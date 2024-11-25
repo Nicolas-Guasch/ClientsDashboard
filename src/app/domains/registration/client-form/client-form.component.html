@@ -1,0 +1,29 @@
+<main>
+  <div class="formcontainer">
+    <h2>Alta de cliente</h2>
+    <form [formGroup]="clientForm" (ngSubmit)="registerClient()">
+      <label for="first-name">Nombre</label>
+      <input type="text" id="first-name" formControlName="firstName" />
+      @if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
+      <div class="warning">Campo nombre requerido.</div>
+      }
+
+      <label for="last-name">Apellido</label>
+      <input type="text" id="last-name" formControlName="lastName" />
+      @if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
+      <div class="warning">Campo apellido requerido.</div>
+      }
+
+      <label for="address">Dirección</label>
+      <input type="text" id="address" formControlName="address" />
+      @if (address?.invalid && (address?.dirty || address?.touched)) {
+      <div class="warning">Campo dirección requerido.</div>
+      }
+      <div class="button-panel">
+        <button type="submit" [disabled]="!clientForm.valid">
+          Registrar cliente
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
