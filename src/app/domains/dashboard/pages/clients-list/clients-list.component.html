@@ -1,1 +1,21 @@
-<main></main>
+<main>
+  <table>
+    <thead>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Dirección</th>
+    </thead>
+    <tbody>
+      @for (client of clients.clients(); track $index) {
+        <tr>
+          <td>{{ client.firstName }}</td>
+          <td>{{ client.lastName }}</td>
+          <td>{{ client.address }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <div>
+    <a [routerLink]="'/register'">Registrar cliente</a>
+  </div>
+</main>

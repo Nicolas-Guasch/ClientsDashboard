@@ -1,0 +1,52 @@
+main {
+  margin-left: 25%;
+}
+
+table {
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  box-shadow:
+    0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  font-size: 18px;
+}
+
+th {
+  padding-right: 0.5rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.6rem 0.25rem 1rem 0.25rem;
+  min-width: 8rem;
+}
+
+tr {
+  border: 1px solid slategray;
+}
+
+tr:nth-of-type(even) {
+  background-color: lightgray;
+}
+
+tr:hover {
+  background-color: dimgray;
+  color: white;
+}
+
+thead {
+  border-bottom: 1px solid black;
+}
+
+a {
+  display: inline-block;
+  width: fit-content;
+  padding-inline: 1.5rem;
+  padding-block: 0.5rem;
+  color: white;
+  background-color: royalblue;
+  border: 0;
+  border-radius: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}

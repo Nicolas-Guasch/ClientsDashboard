@@ -45,7 +45,7 @@ export class ClientFormComponent {
         lastName: this.clientForm.value.lastName!,
         address: this.clientForm.value.address!,
       };
-      this.clients.addClient(newClient);
+      this.clients.addClient$.next(newClient);
       this.router.navigate(['/dashboard']);
     }
   }
