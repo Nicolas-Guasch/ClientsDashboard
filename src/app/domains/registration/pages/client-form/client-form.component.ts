@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ClientsService } from '../../../shared/services/clients.service';
+import { Client } from '../../../shared/models/clients.model';
 
 @Component({
   selector: 'app-client-form',
@@ -14,6 +17,9 @@ import {
   styleUrl: './client-form.component.css',
 })
 export class ClientFormComponent {
+  router = inject(Router);
+  clients = inject(ClientsService);
+
   clientForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -33,6 +39,14 @@ export class ClientFormComponent {
   }
 
   registerClient() {
-    console.log(this.clientForm.value);
+    if (this.clientForm.valid) {
+      const newClient: Client = {
+        firstName: this.clientForm.value.firstName!,
+        lastName: this.clientForm.value.lastName!,
+        address: this.clientForm.value.address!,
+      };
+      this.clients.addClient(newClient);
+      this.router.navigate(['/dashboard']);
+    }
   }
 }
