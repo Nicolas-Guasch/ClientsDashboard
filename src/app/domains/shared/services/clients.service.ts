@@ -23,10 +23,7 @@ export interface ClientsState {
 export class ClientsService {
   private storage = inject(StorageService);
   private state = signal<ClientsState>({
-    clients: [
-      { firstName: 'Fox', lastName: 'Mulder', address: 'Vine Street 2790' },
-      { firstName: 'Dana', lastName: 'Scully', address: '863rd Street 911' },
-    ],
+    clients: [],
     loaded: false,
     error: null,
   });
