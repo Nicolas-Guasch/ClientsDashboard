@@ -42,17 +42,13 @@ export class ClientsService {
       error: (err) => this.state.update((state) => ({ ...state, error: err })),
     });
 
-    this.addClient$.pipe(takeUntilDestroyed()).subscribe((client) =>
-      this.state.update((state) => ({
-        ...state,
-        clients: [...state.clients, client],
-      })),
-    );
-
-    effect(() => {
-      if (this.loaded()) {
-        this.storage.saveClients(this.clients());
-      }
+    this.addClient$.pipe(takeUntilDestroyed()).subscribe((client) => {
+      this.storage.addClient(client).subscribe((client) =>
+        this.state.update((state) => ({
+          ...state,
+          clients: [...state.clients, client],
+        })),
+      );
     });
   }
 }

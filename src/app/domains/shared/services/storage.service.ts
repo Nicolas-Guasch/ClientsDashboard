@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { catchError, of, throwError } from 'rxjs';
 import { Client } from '../models/clients.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
+  http = inject(HttpClient);
   constructor() {}
 
   public loadClients() {
-    return of([
-      { firstName: 'Fox', lastName: 'Mulder', address: 'Vine Street 2790' },
-      { firstName: 'Dana', lastName: 'Scully', address: '863rd Street 911' },
-    ]);
+    return this.http.get<Client[]>('http://localhost:4200/clientes');
   }
 
-  public saveClients(clients: Client[]) {}
+  public addClient(client: Client) {
+    return this.http
+      .post<Client>('http://localhost:4200/clientes', client)
+      .pipe(
+        catchError(() => throwError(() => new Error('POST operation failed'))),
+      );
+  }
 }

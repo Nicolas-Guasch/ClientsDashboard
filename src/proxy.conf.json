@@ -1,0 +1,6 @@
+{
+  "/clientes": {
+    "target": "http://localhost:5011",
+    "secure": false
+  }
+}
