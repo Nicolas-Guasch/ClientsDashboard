@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class StorageService {
   private readonly APIURL = 'http://localhost:4200/clientes';
-  private http = inject(HttpClient);
+  constructor(private http: HttpClient) {}
 
   public loadClients() {
     return this.http.get<Client[]>(this.APIURL);

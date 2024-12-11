@@ -21,7 +21,6 @@ export interface ClientsState {
   providedIn: 'root',
 })
 export class ClientsService {
-  private storage = inject(StorageService);
   private state = signal<ClientsState>({
     clients: [],
     loaded: false,
@@ -35,7 +34,7 @@ export class ClientsService {
   private clientsLoaded$ = this.storage.loadClients();
   public addClient$ = new Subject<Client>();
 
-  constructor() {
+  constructor(private storage: StorageService) {
     this.clientsLoaded$.pipe(takeUntilDestroyed()).subscribe({
       next: (clients) =>
         this.state.update((state) => ({ ...state, clients, loaded: true })),

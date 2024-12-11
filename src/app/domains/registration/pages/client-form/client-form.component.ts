@@ -17,15 +17,15 @@ import { Client } from '../../../shared/models/clients.model';
   styleUrl: './client-form.component.css',
 })
 export class ClientFormComponent {
-  private router = inject(Router);
-  public clients = inject(ClientsService);
-
+  
   public clientForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
   });
 
+  constructor(private router: Router, public clients: ClientsService) {}
+  
   public get firstName() {
     return this.clientForm.get('firstName');
   }
