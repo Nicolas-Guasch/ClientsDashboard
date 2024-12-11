@@ -10,5 +10,5 @@ import { RouterModule } from '@angular/router';
   styleUrl: './clients-list.component.css',
 })
 export class ClientsListComponent {
-  clients = inject(ClientsService);
+  public clients = inject(ClientsService);
 }
