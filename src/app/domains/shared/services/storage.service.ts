@@ -7,16 +7,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class StorageService {
-  http = inject(HttpClient);
-  constructor() {}
+  private readonly APIURL = 'http://localhost:4200/clientes';
+  private http = inject(HttpClient);
 
   public loadClients() {
-    return this.http.get<Client[]>('http://localhost:4200/clientes');
+    return this.http.get<Client[]>(this.APIURL);
   }
 
   public addClient(client: Client) {
     return this.http
-      .post<Client>('http://localhost:4200/clientes', client)
+      .post<Client>(this.APIURL, client)
       .pipe(
         catchError(() => throwError(() => new Error('POST operation failed'))),
       );
